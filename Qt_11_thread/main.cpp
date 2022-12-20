@@ -11,10 +11,14 @@ int main(int argc, char *argv[])
     thread3.name = "thread3";
 
     thread1.start(QThread::HighestPriority);
-//    thread2.start();
+    thread2.start();
+    thread3.start();
 //    thread3.start(QThread::LowestPriority);
-
-    thread1.stop = true;
+//    for(int i=0; i<100; i++)
+//    {
+//       qDebug() << "deneme";
+//    }
+//    thread1.stop = true;
 
 
     return a.exec();

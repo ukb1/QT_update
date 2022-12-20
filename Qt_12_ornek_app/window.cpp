@@ -30,7 +30,7 @@ void window::on_pushButton_clicked()
 
       _mythread->stop=false;
        ui->pushButton->setText("start");
-       _mythread->run();
+
     }
 
    //Start
