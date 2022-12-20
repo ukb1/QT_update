@@ -24,6 +24,15 @@ void window::onNumberChange(int Number)
 void window::on_pushButton_clicked()
 {
     _mythread->start();
+
+    if( _mythread->stop)
+    {
+
+      _mythread->stop=false;
+       ui->pushButton->setText("start");
+       _mythread->run();
+    }
+
    //Start
 }
 
@@ -31,6 +40,7 @@ void window::on_pushButton_clicked()
 void window::on_pushButton_2_clicked()
 {
     _mythread->stop = true;
+    ui->pushButton->setText("pause");
     //Stop
 }
 

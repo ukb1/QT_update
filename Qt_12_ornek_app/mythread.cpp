@@ -17,6 +17,7 @@ void myThread::run()
             break;
         }
         _mutex.unlock();
+        this->msleep(100);
         emit valueChange(i);
     }
 
