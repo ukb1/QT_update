@@ -18,7 +18,7 @@ class ros: public rclcpp::Node
 public:
     ros();
     ~ros();
-    void qt_callback();
+    void qt_callback(int value);
 private:
     rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
 

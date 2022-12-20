@@ -13,10 +13,10 @@ ros::~ros()
     rclcpp::shutdown();
 }
 
-void ros::qt_callback()
+void ros::qt_callback(int value)
 {
     auto msg = example_interfaces::msg::Int32();
-    msg.data = 65;
+    msg.data = value;
 //    RCLCPP_INFO(this->get_logger(),"deneme");
     _publis->publish(msg);
 }
@@ -46,7 +46,7 @@ void rosNode::run()
     {
         qDebug() << value ;
         value++;
-        if(value==100) value=0;
+        ros_node->qt_callback(value);
         this->msleep(100);
         emit startChanged(value);
     }  
