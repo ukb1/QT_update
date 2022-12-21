@@ -31,7 +31,8 @@
 
 rosNode::rosNode(QObject* param): QThread(param), Node("TQ"), stop(true), value(0)
 {
-    rosSpinThread =  std::thread{std::bind(&rosNode::rosSpin, this)};
+    // rosSpinThread =  std::thread{std::bind(&rosNode::rosSpin, this)};
+    rosSpin();
     _publis = this->create_publisher<example_interfaces::msg::Int32>("Qt_Publis",10);
 
 }
@@ -56,7 +57,7 @@ void rosNode::run()
 void rosNode::rosSpin()
 {
     // ros_node = std::make_shared<rosNode>();
-    rclcpp::spin(this->get_node_base_interface());
+    rclcpp::spin_some(this->get_node_base_interface());
 }
 
 
