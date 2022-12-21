@@ -18,29 +18,33 @@ window::~window()
 
 void window::labelChanged(int value)
 {
-    ui->value_line->setText(QString::number(value));
+    ui->getValue->setText(QString::number(value));
 }
 
 void window::on_start_button_clicked()
 {
     rosnode->stop = true;
-    ui->textEdit->setText("<b>Started...</b>");
+    ui->getLine->setText("<b>Started...\n</b>");
     rosnode->start();
 }
 
 void window::on_stop_button_clicked()
 {
-    rosnode->stop = false;
-    ui->textEdit->setText("<b>Stoped...</b>");
+    if(rosnode->stop==true)
+    {
+        rosnode->stop = false;
+        ui->getLine->setText("<b>Stoped...</b>");
+    }
+
 }
 
 void window::on_reset_button_clicked()
 {
     if(rosnode->value!=0)
     {
-        QMessageBox::information(this, "Reset", "values ​​are reset");
+        QMessageBox::information(this, "Reset", "values are reset");
         rosnode->value = 0;
-        ui->textEdit->setText("<b>Reset...</b>");
+        ui->getLine->setText("<b>Reset...</b>");
         rosnode->stop = false;
     }
 }
@@ -68,4 +72,9 @@ void window::on_right_button_clicked()
 void window::on_cancel_button_clicked()
 {
     QMessageBox::warning(this, "EXİT", "The data will be deleted and the application will be closed.");
+}
+
+void window::on_setLine_editingFinished()
+{
+    qDebug("--------------------------");
 }

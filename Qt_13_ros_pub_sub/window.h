@@ -37,6 +37,8 @@ private slots:
 
     void on_cancel_button_clicked();
 
+    void on_setLine_editingFinished();
+
 private:
     Ui::window *ui;
 };

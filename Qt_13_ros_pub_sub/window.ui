@@ -26,12 +26,12 @@
    <string>window</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>20</y>
-      <width>531</width>
+      <width>548</width>
       <height>221</height>
      </rect>
     </property>
@@ -39,9 +39,9 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLineEdit" name="value_line">
+        <widget class="QLineEdit" name="setLine">
          <property name="cursor">
-          <cursorShape>ForbiddenCursor</cursorShape>
+          <cursorShape>IBeamCursor</cursorShape>
          </property>
         </widget>
        </item>
@@ -90,7 +90,14 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QTextEdit" name="textEdit">
+        <widget class="QTextEdit" name="getLine">
+         <property name="cursor" stdset="0">
+          <cursorShape>ForbiddenCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="getValue">
          <property name="cursor" stdset="0">
           <cursorShape>ForbiddenCursor</cursorShape>
          </property>
