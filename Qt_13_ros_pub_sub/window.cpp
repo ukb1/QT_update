@@ -8,6 +8,7 @@ window::window(QWidget *parent)
     rosnode = new rosNode(this);
     ui->setupUi(this);
     connect(rosnode, SIGNAL(startChanged(int)), this, SLOT(labelChanged(int)));
+    // connect(this->setLine, SIGNAL(editingFinished), rosnode, SLOT())
 }
 
 window::~window()
@@ -79,5 +80,7 @@ void window::on_cancel_button_clicked()
 
 void window::on_setLine_editingFinished()
 {
-    qDebug("--------------------------");
+    rosnode->textPublisher(ui->setLine->displayText().toStdString());
+    ui->setLine->clear();
+
 }

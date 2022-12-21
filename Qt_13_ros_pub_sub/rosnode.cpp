@@ -7,6 +7,8 @@ rosNode::rosNode(QObject* param): QThread(param), Node("TQ")
     value = 0;
     rosSpin();
     status_publis = this->create_publisher<example_interfaces::msg::String>("Status",10);
+    text_publis = this->create_publisher<example_interfaces::msg::String>("Text",10);
+
     _publis = this->create_publisher<example_interfaces::msg::Int32>("Qt_Publis",10);
 }
 
@@ -36,4 +38,11 @@ void rosNode::statusPublisher(std::string status)
     msg.data = status;
     status_publis->publish(msg);
 
+}
+
+void rosNode::textPublisher(std::string text)
+{
+    auto msg = example_interfaces::msg::String();
+    msg.data = text;
+    text_publis->publish(msg);
 }

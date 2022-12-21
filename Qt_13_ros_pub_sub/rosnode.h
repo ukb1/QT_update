@@ -18,7 +18,7 @@ class rosNode: public QThread, public rclcpp::Node
 private:
     rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
     rclcpp::Publisher<example_interfaces::msg::String>::SharedPtr status_publis;
-
+    rclcpp::Publisher<example_interfaces::msg::String>::SharedPtr text_publis;
 public:
     rosNode(QObject* param=0);
     ~rosNode() { rclcpp::shutdown();}
@@ -33,6 +33,7 @@ signals:
 
 public slots:
     void statusPublisher(std::string status);
+    void textPublisher(std::string text);
 };
 
 
