@@ -12,7 +12,7 @@
 #include <example_interfaces/msg/string.hpp>
 
 
-class rosNode: public QThread, public rclcpp::Node
+class rosNode: public QObject/*QThread,*/, public rclcpp::Node
 {
     Q_OBJECT
 private:
