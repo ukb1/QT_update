@@ -53,22 +53,23 @@ void window::on_reset_button_clicked()
 
 void window::on_up_button_clicked()
 {
-    qDebug("UP");
+
+    rosnode->statusPublisher(ui->up_button->text().toStdString());
 }
 
 void window::on_down_button_clicked()
 {
-    qDebug("DOWN");
+    rosnode->statusPublisher(ui->down_button->text().toStdString());
 }
 
 void window::on_left_button_clicked()
 {
-    qDebug("LEFT");
+    rosnode->statusPublisher(ui->left_button->text().toStdString());
 }
 
 void window::on_right_button_clicked()
 {
-    qDebug("RIGHT");
+    rosnode->statusPublisher(ui->right_button->text().toStdString());
 }
 
 void window::on_cancel_button_clicked()
