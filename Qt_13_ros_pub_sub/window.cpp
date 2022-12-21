@@ -45,6 +45,8 @@ void window::on_reset_button_clicked()
         QMessageBox::information(this, "Reset", "values ​​are reset");
         rosnode->value = 0;
         ui->getLine->setText("<b>Reset...</b>");
+        ui->getValue->setText(QString::number(0));
+        
         rosnode->stop = false;
     }
 }
