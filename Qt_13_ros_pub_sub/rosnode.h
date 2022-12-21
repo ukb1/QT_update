@@ -13,26 +13,30 @@
 
 
 
-class ros: public rclcpp::Node
-{
-public:
-    ros();
-    ~ros();
-    void qt_callback(int value);
-private:
-    rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
+// class ros: public rclcpp::Node
+// {
+// public:
+//     ros();
+//     ~ros();
+//     void qt_callback(int value);
+// private:
+    // rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
 
-};
+// };
 
 
 
-class rosNode: public QThread
+class rosNode: public QThread, rclcpp::Node
 {
     Q_OBJECT
 private:
     std::thread rosSpinThread;
+    rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
+
 public:
+    void qt_callback(int value);
     rosNode(QObject* param=0);
+    ~rosNode();
 
     void run();
     bool stop;
@@ -40,7 +44,7 @@ public:
     QThread* thread;
     uint16_t value;
     void rosSpin();
-    std::shared_ptr<ros> ros_node;
+//    std::shared_ptr<ros> ros_node;
 
 signals:
     void startChanged(int i);
