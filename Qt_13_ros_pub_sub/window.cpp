@@ -7,7 +7,9 @@ window::window(QWidget *parent)
 {
     rosnode = new rosNode(this);
     ui->setupUi(this);
-    connect(rosnode, SIGNAL(startChanged(int)), this, SLOT(labelChanged(int)));
+    rosnode->start();
+
+    connect(rosnode, SIGNAL(timerChanged(int)), this, SLOT(labelChanged(int)));
     // connect(this->setLine, SIGNAL(editingFinished), rosnode, SLOT())
 }
 
@@ -25,8 +27,8 @@ void window::labelChanged(int value)
 void window::on_start_button_clicked()
 {
     rosnode->stop = true;
+
     ui->getLine->setText("<b>Started...\n</b>");
-    rosnode->start();
 }
 
 void window::on_stop_button_clicked()

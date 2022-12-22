@@ -10,12 +10,18 @@ rosNode::rosNode(QObject* param): QThread(param) /*QObject(param)*/, Node("TQ")
     text_publis = this->create_publisher<example_interfaces::msg::String>("Text",10);
     timer_subs = this->create_subscription<example_interfaces::msg::Int32>("Timer",10, std::bind(&rosNode::timerCallback,this, std::placeholders::_1) );
 
-    _publis = this->create_publisher<example_interfaces::msg::Int32>("Qt_Publis",10);
+    // _publis = this->create_publisher<example_interfaces::msg::Int32>("Qt_Publis",10);
 }
 
 void rosNode::run()
 {
-   while(stop)
+    rclcpp::spin(this->get_node_base_interface());
+
+    
+
+/*
+Bu kısım kendi içinde bir sayaçbaşlatıp bu sayaçtan bir sinyal üretiyordu
+ while(stop)
    {
         
        qDebug() << value ;
@@ -23,11 +29,13 @@ void rosNode::run()
        auto msg = example_interfaces::msg::Int32();
        msg.data = value;
        _publis->publish(msg);
-      rclcpp::spin_some(this->get_node_base_interface());
+      
 
        this->msleep(100);
        emit startChanged(value);
    }
+*/
+  
 }
 
 void rosNode::rosSpin()
@@ -53,5 +61,7 @@ void rosNode::textPublisher(std::string text)
 
 void rosNode::timerCallback(const example_interfaces::msg::Int32::SharedPtr timer)
 {
-    RCLCPP_INFO(this->get_logger(), "-------");
+    int value = timer->data;
+    emit timerChanged(value);
+
 }

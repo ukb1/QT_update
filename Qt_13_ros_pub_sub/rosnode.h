@@ -16,7 +16,7 @@ class rosNode: public QThread, public rclcpp::Node
 {
     Q_OBJECT
 private:
-    rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
+    // rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr _publis;
     rclcpp::Publisher<example_interfaces::msg::String>::SharedPtr status_publis;
     rclcpp::Publisher<example_interfaces::msg::String>::SharedPtr text_publis;
     rclcpp::Subscription<example_interfaces::msg::Int32>::SharedPtr timer_subs;
@@ -33,8 +33,8 @@ public:
     void timerCallback(const example_interfaces::msg::Int32::SharedPtr timer);
 
 signals:
-    void startChanged(int i);
-    void timerChanged();
+    // void startChanged(int i);
+    void timerChanged(int i);
 
 public slots:
     void statusPublisher(std::string status);
