@@ -10,7 +10,6 @@ window::window(QWidget *parent)
     rosnode->start();
 
     connect(rosnode, SIGNAL(timerChanged(int)), this, SLOT(labelChanged(int)));
-    // connect(this->setLine, SIGNAL(editingFinished), rosnode, SLOT())
 }
 
 window::~window()
