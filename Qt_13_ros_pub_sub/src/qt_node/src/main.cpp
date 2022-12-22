@@ -1,11 +1,13 @@
 #include <rclcpp/rclcpp.hpp>
 #include "example_interfaces/msg/int32.hpp"
+#include "example_interfaces/srv/set_bool.hpp"
 
 class ros: public rclcpp::Node
 {
 private:
     rclcpp::Publisher<example_interfaces::msg::Int32>::SharedPtr timer_publisher;
     rclcpp::TimerBase::SharedPtr _timer;
+    rclcpp::Service<example_interfaces::srv::SetBool>::SharedPtr reset_service;
     unsigned int _counter;
 
 
