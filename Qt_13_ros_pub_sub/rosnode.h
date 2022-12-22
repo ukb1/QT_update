@@ -23,18 +23,19 @@ private:
     rclcpp::Subscription<example_interfaces::msg::Int32>::SharedPtr timer_subs;
     // rclcpp::Service<example_interfaces::srv::AddTwoInts>:.SharedPtr reset_server;
     rclcpp::Client<example_interfaces::srv::SetBool>::SharedPtr reset_server;
-    std::vector<std::thread> _thread;
 
 
 public:
     bool stop;
     uint16_t value;
+    std::vector<std::thread> _thread;
+
 
     rosNode(QObject* param=0);
     ~rosNode() { rclcpp::shutdown();}
     void run();
     void timerCallback(const example_interfaces::msg::Int32::SharedPtr timer);
-    void resetClientCallback(int value);
+    void resetClientCallback();
 
 signals:
     void timerChanged(int i);
@@ -43,6 +44,7 @@ signals:
 public slots:
     void statusPublisher(std::string status);
     void textPublisher(std::string text);
+    void resetService();
 };
 
 

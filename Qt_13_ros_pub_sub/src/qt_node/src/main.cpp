@@ -33,6 +33,7 @@ public:
         _response->success = true;
         _response->message = "Timer Reset ...";
         RCLCPP_WARN(this->get_logger(), "Timer Reset...");
+        
         if(_request->data)
         {
             _timer = 0;

@@ -10,6 +10,7 @@ window::window(QWidget *parent)
     rosnode->start();
 
     connect(rosnode, SIGNAL(timerChanged(int)), this, SLOT(labelChanged(int)));
+    // connect(ui->reset_button, &QPushButton::clicked, this, [&]() { rosnode->resetService(); });
 }
 
 window::~window()
@@ -25,7 +26,7 @@ void window::labelChanged(int value)
 
 void window::on_start_button_clicked()
 {
-    rosnode->stop = true;
+    // rosnode->value = true;
 
     ui->getLine->setText("<b>Started...\n</b>");
 }
@@ -34,6 +35,7 @@ void window::on_stop_button_clicked()
 {
     if(rosnode->stop==true)
     {
+        qDebug("---------------------------------");
         rosnode->stop = false;
         ui->getLine->setText("<b>Stoped...</b>");
     }
@@ -42,13 +44,18 @@ void window::on_stop_button_clicked()
 
 void window::on_reset_button_clicked()
 {
-    if(rosnode->value!=0)
+
+    if(rosnode->value != 0)
     {
+        qDebug("reset....");
+
+
+        // rosnode->_thread.push_back(std::thread(std::bind(&rosNode::resetClientCallback, this)));
         QMessageBox::information(this, "Reset", "values ​​are reset");
-        rosnode->value = 0;
+        // rosnode->value = 0;
         ui->getLine->setText("<b>Reset...</b>");
         ui->getValue->setText(QString::number(0));
-        
+        rosnode->resetService();
         rosnode->stop = false;
     }
 }
