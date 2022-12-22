@@ -34,7 +34,7 @@ public:
     ~rosNode() { rclcpp::shutdown();}
     void run();
     void timerCallback(const example_interfaces::msg::Int32::SharedPtr timer);
-    void resetClientCallback();
+    void resetClientCallback(int value);
 
 signals:
     void timerChanged(int i);
