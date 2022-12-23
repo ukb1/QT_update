@@ -9,13 +9,15 @@ private:
     rclcpp::TimerBase::SharedPtr _timer;
     rclcpp::Service<example_interfaces::srv::SetBool>::SharedPtr reset_service;
     unsigned int _counter;
+    std::vector<std::thread> _threads;
 
 
 public:
     ros(): Node("Qt_ros"), _counter(0)
     {
         timer_publisher = this->create_publisher<example_interfaces::msg::Int32>("Timer", 10);
-        reset_service   = this->create_service<example_interfaces::srv::SetBool>("Reset_Timer", std::bind(&ros::resetCallback, this, std::placeholders::_1, std::placeholders::_2));
+        reset_service   = this->create_service<example_interfaces::srv::SetBool>("Reset_Timer", std::bind(&ros::resetCallback,
+                                                                                 this, std::placeholders::_1, std::placeholders::_2));
         _timer = this->create_wall_timer(std::chrono::seconds(2),
                                             std::bind(&ros::timerCallback,this));
     }
@@ -33,15 +35,13 @@ public:
         _response->success = true;
         _response->message = "Timer Reset ...";
         RCLCPP_WARN(this->get_logger(), "Timer Reset...");
-        
+
         if(_request->data)
         {
             _timer = 0;
         }
 
     }
-
-
 
 };
 
