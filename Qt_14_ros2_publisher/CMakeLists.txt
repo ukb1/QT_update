@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(d2_publisher LANGUAGES CXX)
+project(Qt_14_ros2_publisher LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -26,32 +25,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(example_interfaces REQUIRED)
-
-include_directories("/opt/ros/galactic/include")
+find_package(ament_cmake REQUIRED)
 
 
 if(ANDROID)
-  add_library(main SHARED
+  add_library(Qt_14_ros2_publisher SHARED
     main.cpp
-    window.cpp
-    window.h
-    ros.cpp
-    ros.h
-    window.ui
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
   )
 else()
-  add_executable(main
+  add_executable(Qt_14_ros2_publisher
     main.cpp
-    window.cpp
-    window.h
-    ros.cpp
-    ros.h
-    window.ui
+    rosnode.cpp
+    rosnode.h
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
   )
 endif()
 
-ament_target_dependencies(main rclcpp example_interfaces )
-target_link_libraries(main  Qt5::Widgets)
+target_link_libraries(Qt_14_ros2_publisher Qt5::Widgets)
+ament_target_dependencies(Qt_14_ros2_publisher rclcpp example_interfaces)

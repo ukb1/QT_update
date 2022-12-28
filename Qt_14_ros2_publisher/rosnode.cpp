@@ -1,4 +1,4 @@
-#include "ros.h"
+#include "rosnode.h"
 
 //////////////////////////////////////////////////////////////////////////
 void ros::qt_callback()
@@ -9,11 +9,6 @@ void ros::qt_callback()
     _publis->publish(msg);
 }
 //////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 
 
 ros_enable::ros_enable()
@@ -27,4 +22,4 @@ void ros_enable::enable_pub()
     ros_node = std::make_shared<ros>();
     rclcpp::spin(ros_node);
     rclcpp::shutdown();
-}   
+}

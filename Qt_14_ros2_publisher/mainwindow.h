@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "ros.h"
+#include "rosnode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class window; }
