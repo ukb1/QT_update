@@ -5,6 +5,3 @@
 ## QT <-> ROS2 Publisher and Subscriber
 ####  Qt_13_ros_pub_sub/
 
-
-
-## QT  - ROS CONSOLE
