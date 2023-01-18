@@ -1,9 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
-<<<<<<< HEAD
 //import JoyLibrary 1.0
-=======
->>>>>>> origin/main
 
 
 Window {
@@ -18,27 +15,16 @@ Window {
 
     property int value_x: 10
     property int value_y: 10
-    property int left_control_y  : 50
-    property int left_control_x  : 150
-    property int right_control_y : 420
-    property int right_control_x : 150
     property bool value : false
-
 
     Rectangle{
         id: udrl
-        x: 50   //left_control_x
-        y: 150  //left_control_y
+        x: 50
+        y: 150
 
-<<<<<<< HEAD
-        width:  _recUDRL.width
-        height: _recUDRL.height
-        color:  _colorUDRL
-
-=======
-        width: 132
+        width:  132
         height: 112
->>>>>>> origin/main
+
         Image {
             id: upper
             x:  50
@@ -46,7 +32,10 @@ Window {
             source: "/Image/up.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed:{ upper.opacity = 0.5 }
+                onPressed:{ upper.opacity = 0.5
+                    _rosNode.buttonCallback(0)
+
+                }
                 onReleased: upper.opacity  = 1.0
             }
         }
@@ -58,7 +47,9 @@ Window {
             source: "/Image/down.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed:  down.opacity  = 0.5
+                onPressed:{  down.opacity  = 0.5
+                    _rosNode.buttonCallback(1)
+                }
                 onReleased: down.opacity  = 1.0
             }
 
@@ -70,7 +61,9 @@ Window {
             source: "/Image/left.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed:  left.opacity = 0.5
+                onPressed:  {left.opacity = 0.5
+                    _rosNode.buttonCallback(2)
+                }
                 onReleased: left.opacity = 1.0
 
 
@@ -84,7 +77,9 @@ Window {
             source: "/Image/right.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed: right.opacity  = 0.5
+                onPressed: {right.opacity  = 0.5
+                    _rosNode.buttonCallback(3)
+                }
                 onReleased: right.opacity  = 1.0
             }
         }
@@ -93,17 +88,11 @@ Window {
 
     Rectangle{
         id: xrtc
-        x: 420 //right_control_x
-        y: 150 // right_control_y
+        x: 420
+        y: 150
 
-<<<<<<< HEAD
-        width:  /*132*/  _recXRTC.width /* _user.mySize*/
-        height: /*112*/  _recXRTC.height
-        color:  _colorXRTC
-=======
-        width: 132
+        width:  132
         height: 112
->>>>>>> origin/main
         Image {
             id: x_icon
             x:  50
@@ -111,7 +100,9 @@ Window {
             source: "/Image/x.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed: x_icon.scale  = 1.3
+                onPressed: {x_icon.scale  = 1.3
+                    _rosNode.buttonCallback(6)
+                }
                 onReleased: x_icon.scale = 1.0
             }
         }
@@ -122,7 +113,9 @@ Window {
             source: "/Image/rectangle.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed: rec_icon.scale  = 1.3
+                onPressed: {rec_icon.scale  = 1.3
+                    _rosNode.buttonCallback(5)
+                }
                 onReleased: rec_icon.scale = 1.0
             }
         }
@@ -133,7 +126,9 @@ Window {
             source: "/Image/triangle.png"
             MouseArea{
                 anchors.fill: parent
-                onPressed:   tri_icon.scale = 1.3
+                onPressed:   {tri_icon.scale = 1.3
+                    _rosNode.buttonCallback(7)
+                }
                 onReleased:  tri_icon.scale = 1.0
             }
 
@@ -145,14 +140,13 @@ Window {
             y:40
             opacity: 1.0
             source: "/Image/circle.png"
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/main
             MouseArea{
                 anchors.fill: parent
-                onPressed:    cir_icon.scale  = 1.3
+                onPressed:    {cir_icon.scale  = 1.3
+                    _rosNode.buttonCallback(4)
+                }
                 onReleased:   cir_icon.scale = 1.0
             }
 
@@ -182,6 +176,8 @@ Window {
                     udrl.y = 150
                     xrtc.x = 420
                     xrtc.y = 150
+                    _rosNode.buttonCallback(8)
+
 
                 }
                 else
@@ -192,6 +188,7 @@ Window {
                     udrl.y = 150
                     xrtc.x = 50
                     xrtc.y = 150
+                    _rosNode.buttonCallback(9)
                 }
 
             }
@@ -206,11 +203,7 @@ Window {
         width:  540
         height: 100
         color: "#D9D9D9"
-<<<<<<< HEAD
          radius: 20
-=======
-        radius: 20
->>>>>>> origin/main
         clip: true
         Rectangle {
             id: rect
@@ -227,41 +220,24 @@ Window {
                {
                    rect.x = mouseX - rect.width / 2;
                    rect.y = mouseY - rect.height / 2
-<<<<<<< HEAD
-                   _ballTrac.setBall(rect.x, rect.y)
-                   _ballTrac.getBall()
-=======
->>>>>>> origin/main
+//                   _ballTrac.setBall(rect.x, rect.y)
+//                   _ballTrac.getBall()
+                   _rosNode.ballStateCallback(rect.x, rect.y)
                }
            }
     }
 
-<<<<<<< HEAD
 
         Text{
             id: name
             x:275; y:0
-            text: _user.name
+            text: _rosNode.name
             font.family: "Arial"
             font.bold: true
             font.pointSize: 14
         }
 
 
-=======
-//    Rectangle{
-//        x:40; y:40
-//        width: 400
-//        height: 500
-//        color: "Red"
-//        Image{
-//            x:10; y:10
-//            width: 40
-//            height: 40
-//            source:"/Image/up.png"
-//        }
-//    }
->>>>>>> origin/main
 
 
 }
